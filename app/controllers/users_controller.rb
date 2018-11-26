@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
-  # attr_accessor :password
+  skip_before_action :authorized, only: [:create]
+
+  def profile
+    render json: { user: UserSerializer.new(current_user) }, status: :accepted
+  end
 
   # GET /users
   def index
@@ -18,7 +22,8 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.valid?
-      render json: { user: UserSerializer.new(@user) }, status: :created
+      @token = encode_token({user_id: @user.id})
+      render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
     else
       render json: { error: 'failed to create user' }, status: :not_acceptable
     end
@@ -46,6 +51,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:username, :password, :email, :displayname, :img, :bio, :score)
+      params.require(:user).permit(:username, :password, :password_confirmation, :email, :displayname, :img, :bio, :score)
     end
 end
