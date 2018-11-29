@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :projects
   resources :users
   post '/auth', to: 'auth#create'
-  get '/current_user', to: 'auth#show'
+  # get '/current_user', to: 'auth#show'
+  get "/persist", to: "auth#persist"
 end
