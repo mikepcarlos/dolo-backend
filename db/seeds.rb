@@ -18,13 +18,13 @@ danny = User.create(username: 'dantheman', password: "airbnb", email: "makingbre
 
 ##### PROJECTS #####
 
-building_a_robot = Project.create(name: "Build a Robot!", category: "Robotics", img: '', description: "I want to build a robot that can that can build robots and I need your help to do it!")
+building_a_robot = Project.create(name: "Build a Robot!", category: "Robotics", img: '', description: "I want to build a robot that can that can build robots and I need your help to do it!", user: mike)
 
-making_a_song = Project.create(name: "It's a hit!", category: "Music", img: '', description: "We're gunna make a smash hit yo! Step out the way Cardi B!")
+making_a_song = Project.create(name: "It's a hit!", category: "Music", img: '', description: "We're gunna make a smash hit yo! Step out the way Cardi B!", user: danny)
 
-making_a_movie = Project.create(name: "A Day in the Life", category: "Film", img: '', description: "A documentary film based on the life surrounding a venus fly trap. Most people don't know just how exciting their ecosystem is!")
+making_a_movie = Project.create(name: "A Day in the Life", category: "Film", img: '', description: "A documentary film based on the life surrounding a venus fly trap. Most people don't know just how exciting their ecosystem is!", user: gavin)
 
-building_a_house = Project.create(name: "Making a Trap House", category: "Construction", img: '', description: "I need skilled workers ready to make the illest trap house ever!")
+building_a_house = Project.create(name: "Making a Trap House", category: "Construction", img: '', description: "I need skilled workers ready to make the illest trap house ever!", user: steven)
 
 #### TASKS ######
 
@@ -54,13 +54,13 @@ designer = Task.create(title: "Designing", timeleft: '05:00:00', start: "Nov 26,
 
 #### USERPROJECTS #####
 
-UserProject.create(user: mike, project: building_a_robot)
-
-UserProject.create(user: gavin, project: making_a_movie)
-
-UserProject.create(user: steven, project: building_a_house)
-
-UserProject.create(user: danny, project: making_a_song)
+# UserProject.create(user: mike, project: building_a_robot)
+#
+# UserProject.create(user: gavin, project: making_a_movie)
+#
+# UserProject.create(user: steven, project: building_a_house)
+#
+# UserProject.create(user: danny, project: making_a_song)
 
 ### USERTASKS ####
 
