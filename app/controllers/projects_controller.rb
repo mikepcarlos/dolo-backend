@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:index]
 
   # GET /projects
   def index
@@ -16,6 +17,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(project_params)
+    @project.user = current_user
 
     if @project.save
       render json: @project, status: :created, location: @project

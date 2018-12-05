@@ -24,13 +24,6 @@ class AuthController < ApplicationController
   end
 
   def persist
-    # token = request.headers["Authorization"]
-    # begin
-    #   payload = JWT.decode(token, ENV['tokemon'], true)
-    # rescue JWT::DecodeError
-    #   nil
-    # end
-    # byebug
     if(current_user)
       token = encode_token({ user_id: current_user.id })
       render json: { user: UserSerializer.new(current_user), jwt: token }
