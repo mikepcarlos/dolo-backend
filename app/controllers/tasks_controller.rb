@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:index]
 
   # GET /tasks
   def index
@@ -16,6 +17,7 @@ class TasksController < ApplicationController
   # POST /tasks
   def create
     @task = Task.new(task_params)
+    # byebug
 
     if @task.save
       render json: @task, status: :created, location: @task
@@ -46,6 +48,6 @@ class TasksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def task_params
-      params.require(:task).permit(:title, :timeleft, :start, :description)
+      params.require(:task).permit(:title, :timeleft, :start, :description, :user_id, :project_id)
     end
 end
